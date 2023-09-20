@@ -20,7 +20,6 @@ public class Main {
                 x[i] = base * -10;
             }
 
-
         }
         double[][] matrix = new double[11][20];
         Set<Integer> values = Set.of(5, 7, 13, 15, 21);
@@ -39,13 +38,13 @@ public class Main {
                     continue;
                 }
                 }
-                if (makeRound) {
+
+                matrix[i][j] = atan(0.5 * sin(pow(pow(2 * x[j], x[j]) * (sin(x[j] + (2 / 3))), 3)));
+
+                if (makeRound && Double.isNaN(matrix[i][j])) {
                     matrix[i][j] = atan(0.5 * sin(pow(pow(2 * x[j], round(x[j])) * (sin(x[j] + (2 / 3))), 3)));
                 }
-                else {
-                    matrix[i][j] = atan(0.5 * sin(pow(pow(2 * x[j], x[j]) * (sin(x[j] + (2 / 3))), 3)));
-                }
-                
+
                 System.out.printf("%.3f ", matrix[i][j]);
             }
             System.out.println();
