@@ -29,17 +29,13 @@ public class Main {
                 if (c[i] == 3) {
 
                     matrix[i][j] = pow(atan((pow(E, -abs(x[j])))), 1.0 / 3.0);
-                    if (Double.isNaN(matrix[i][j])) {
-                        int a = 0;
-                    }
+
                     continue;
                 }
                 else {
                     if (values.contains(c[i])) {
                     matrix[i][j] = pow(((0.25 / 3) / (4 / cos(x[j]))), asin(pow(E, -abs(x[j]))));
-                        if (Double.isNaN(matrix[i][j])) {
-                            int a = 0;
-                        }
+
                     continue;
                 }
                 }
@@ -49,10 +45,7 @@ public class Main {
                 else {
                     matrix[i][j] = atan(0.5 * sin(pow(pow(2 * x[j], x[j]) * (sin(x[j] + (2 / 3))), 3)));
                 }
-
-                if (Double.isNaN(matrix[i][j])) {
-                    int a = 0;
-                }
+                
                 System.out.printf("%.3f ", matrix[i][j]);
             }
             System.out.println();
