@@ -1,5 +1,4 @@
 import static java.lang.Math.*;
-import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,30 +21,34 @@ public class Main {
 
         }
         double[][] matrix = new double[11][20];
-        Set<Integer> values = Set.of(5, 7, 13, 15, 21);
+
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                if (c[i] == 3) {
 
-                    matrix[i][j] = pow(atan((pow(E, -abs(x[j])))), 1.0 / 3.0);
+                switch((int)c[i]) {
+                    case (3):
+                        matrix[i][j] = pow(atan((pow(E, -abs(x[j])))), 1.0 / 3.0);
+                        break;
+                    case 5, 7, 13, 15, 21:
+                        matrix[i][j] = pow(((0.25 / 3) / (4 / cos(x[j]))), asin(pow(E, -abs(x[j]))));
 
-                    continue;
+                        if (makeRound && Double.isNaN(matrix[i][j])) {
+                            matrix[i][j] = pow(((0.25 / 3) / (4 / cos(x[j]))), round(asin(pow(E, -abs(x[j])))));
+                        }
+
+                        break;
+                    default:
+                        matrix[i][j] = atan(0.5 * sin(pow(pow(2 * x[j], x[j]) * (sin(x[j] + (2 / 3))), 3)));
+
+                        if (makeRound && Double.isNaN(matrix[i][j])) {
+                            matrix[i][j] = atan(0.5 * sin(pow(pow(2 * x[j], round(x[j])) * (sin(x[j] + (2 / 3))), 3)));
+                        }
+
+                        break;
                 }
-                else {
-                    if (values.contains(c[i])) {
-                    matrix[i][j] = pow(((0.25 / 3) / (4 / cos(x[j]))), asin(pow(E, -abs(x[j]))));
 
-                    continue;
-                }
-                }
+                System.out.format("%-7.3f ", matrix[i][j]);
 
-                matrix[i][j] = atan(0.5 * sin(pow(pow(2 * x[j], x[j]) * (sin(x[j] + (2 / 3))), 3)));
-
-                if (makeRound && Double.isNaN(matrix[i][j])) {
-                    matrix[i][j] = atan(0.5 * sin(pow(pow(2 * x[j], round(x[j])) * (sin(x[j] + (2 / 3))), 3)));
-                }
-
-                System.out.printf("%.3f ", matrix[i][j]);
             }
             System.out.println();
         }
@@ -54,4 +57,3 @@ public class Main {
     }
 
 }
-
